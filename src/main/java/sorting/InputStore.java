@@ -32,7 +32,7 @@ class InputStore<T> extends InputFactory<T> {
                 if (stringLong.matches("-?\\d+")) {
                     stringLongs.add(stringLong);
                 } else {
-                    System.err.printf("\"%s\" is not a long. It will be skipped.", stringLong);
+                    System.err.printf("\"%s\" is not a long. It will be skipped.%n", stringLong);
                 }
             }
 
@@ -46,8 +46,12 @@ class InputStore<T> extends InputFactory<T> {
 
         } else if ("word".equals(dataType)) {
             List<String> words = new ArrayList<>();
+            String punctToRemove = "_|\"|,|\\.|;|:|\\(|\\)|\\$|\\%|'|\\?|!|\u201c|\u201d|\u2018|\u2019|\\[|\\]";
+            String punctToReplace = "\u2014";
             while (scanner.hasNext()) {
-                words.add(scanner.next());
+                words.add(scanner.next()
+                        .replaceAll(punctToRemove, "")
+                        .replaceAll(punctToReplace, " "));
             }
             String[] wordsArray = words.toArray(new String[words.size()]);
             WordInput<T> wordInput = new WordInput(wordsArray, dataType, sortingType);
