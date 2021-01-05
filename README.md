@@ -3,9 +3,9 @@
 
 ## About
 
-This project sorts long, string, or long data by natural order or by occurrence count.
+This project sorts number (long), word (string), or line (string) data by natural order or by occurrence count.
 
-For example, given an input file:
+For example, given an input file `src/main/resources/data/input.txt`:
 
 ```
 2 6 4 3 5 44
